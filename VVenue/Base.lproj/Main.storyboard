@@ -6,13 +6,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Host-->
         <scene sceneID="aY2-Rm-Y4q">
             <objects>
-                <viewController title="Host" id="AxP-ts-ZcK" sceneMemberID="viewController">
+                <viewController title="Host" id="AxP-ts-ZcK" customClass="HostViewController" customModule="VVenue" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="48A-bn-Ktc"/>
                         <viewControllerLayoutGuide type="bottom" id="I13-aG-icf"/>
@@ -20,11 +22,106 @@
                     <view key="view" contentMode="scaleToFill" id="Acw-uj-ALV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-4J-g8G">
+                                <rect key="frame" x="96" y="314" width="183" height="39.5"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Begin Hosting Event">
+                                            <attributes>
+                                                <font key="NSFont" size="20" name="Avenir-Book"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="startHosting" destination="AxP-ts-ZcK" eventType="touchUpInside" id="6FL-NZ-pDw"/>
+                                </connections>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQI-eW-DZb" customClass="DynamicImageView" customModule="VVenue" customModuleProvider="target">
+                                <rect key="frame" x="31" y="177" width="313" height="313"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MQI-eW-DZb" secondAttribute="height" multiplier="1:1" id="9Bu-wP-x1F"/>
+                                    <constraint firstAttribute="width" secondItem="MQI-eW-DZb" secondAttribute="height" multiplier="1:1" id="EcT-5l-cWy"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2mg-U3-tjR" appends="YES" id="NP0-jz-aH3"/>
+                                </connections>
+                            </imageView>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-Y5-POx">
+                                <rect key="frame" x="162.5" y="308.5" width="50" height="50"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YZM-m2-g81">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UMf-Iw-cfk">
+                                            <rect key="frame" x="6.5" y="6.5" width="37" height="37"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UMf-Iw-cfk" firstAttribute="centerX" secondItem="YZM-m2-g81" secondAttribute="centerX" id="C6Z-F1-fZ2"/>
+                                        <constraint firstItem="UMf-Iw-cfk" firstAttribute="centerY" secondItem="YZM-m2-g81" secondAttribute="centerY" id="kx1-Tl-4St"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="UZN-gb-SFn"/>
+                                    <constraint firstAttribute="width" constant="50" id="ejp-fZ-dpD"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B09-Na-K4N">
+                                <rect key="frame" x="163" y="134.5" width="49" height="27.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="MQI-eW-DZb" secondAttribute="trailing" constant="15" id="1Ry-1G-lOY"/>
+                            <constraint firstItem="MQI-eW-DZb" firstAttribute="leading" secondItem="Acw-uj-ALV" secondAttribute="leadingMargin" constant="15" id="7MF-7e-zef"/>
+                            <constraint firstItem="OMd-Y5-POx" firstAttribute="centerY" secondItem="Acw-uj-ALV" secondAttribute="centerY" id="C68-wD-QCj"/>
+                            <constraint firstItem="OMd-Y5-POx" firstAttribute="centerX" secondItem="Acw-uj-ALV" secondAttribute="centerX" id="ELO-Yk-9sn"/>
+                            <constraint firstItem="SJy-4J-g8G" firstAttribute="centerX" secondItem="Acw-uj-ALV" secondAttribute="centerX" id="H6A-mA-vFx"/>
+                            <constraint firstItem="B09-Na-K4N" firstAttribute="centerX" secondItem="Acw-uj-ALV" secondAttribute="centerX" id="JKc-qd-Z0Y"/>
+                            <constraint firstItem="MQI-eW-DZb" firstAttribute="top" secondItem="B09-Na-K4N" secondAttribute="bottom" constant="15" id="c5v-AU-Ut6"/>
+                            <constraint firstItem="MQI-eW-DZb" firstAttribute="width" secondItem="MQI-eW-DZb" secondAttribute="height" multiplier="1:1" id="lyh-W6-ySH"/>
+                            <constraint firstItem="MQI-eW-DZb" firstAttribute="centerY" secondItem="Acw-uj-ALV" secondAttribute="centerY" id="ogc-pE-q4y"/>
+                            <constraint firstItem="MQI-eW-DZb" firstAttribute="centerX" secondItem="Acw-uj-ALV" secondAttribute="centerX" id="pq0-aT-66g"/>
+                            <constraint firstItem="SJy-4J-g8G" firstAttribute="centerY" secondItem="Acw-uj-ALV" secondAttribute="centerY" id="xp0-v5-har"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="BOv-rW-V99" appends="YES" id="V99-Zs-ZM0"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="i3D-bc-1Gz"/>
+                    <navigationItem key="navigationItem" title="Event Hosting" id="i3D-bc-1Gz"/>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="OMd-Y5-POx" id="Xcc-F1-908"/>
+                        <outlet property="beginHostingButton" destination="SJy-4J-g8G" id="862-fU-KnY"/>
+                        <outlet property="queryImage" destination="MQI-eW-DZb" id="pQZ-4D-EBl"/>
+                        <outlet property="welcomeLabel" destination="B09-Na-K4N" id="vms-4g-t1n"/>
+                        <segue destination="8kK-v0-h8V" kind="show" id="ZC8-ih-f7I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3g-w4-A73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2mg-U3-tjR" userLabel="Image tap">
+                    <connections>
+                        <action selector="openCamera" destination="AxP-ts-ZcK" id="dgs-VV-htG"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BOv-rW-V99" userLabel="View tap">
+                    <connections>
+                        <action selector="viewTapped:" destination="AxP-ts-ZcK" id="MX0-dC-ytP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="496.80000000000001" y="288.30584707646182"/>
         </scene>
@@ -41,7 +138,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3sh-h1-VNL"/>
+                    <navigationItem key="navigationItem" title="Register for an Event" id="3sh-h1-VNL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naZ-cT-rCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -65,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="-1393" y="-38"/>
         </scene>
-        <!--Register-->
+        <!--Register Navigation Controller-->
         <scene sceneID="ARd-Tt-4t4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Oma-UI-hPS" sceneMemberID="viewController">
+                <navigationController title="Register Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="Oma-UI-hPS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Register" image="ticketIcon-Small" selectedImage="ticketIcon-Small" id="Gen-ID-ssB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AcT-8Y-hk3">
@@ -84,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="-442.39999999999998" y="-366.56671664167919"/>
         </scene>
-        <!--Host-->
+        <!--Host Navigation Controller-->
         <scene sceneID="L3I-Hu-ckt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qkc-pU-rJB" sceneMemberID="viewController">
+                <navigationController title="Host Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="qkc-pU-rJB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Host" image="Icon-Small" selectedImage="Icon-Small" id="ota-8A-DLw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gcn-wY-3h7">
@@ -102,6 +199,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNe-b2-KKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-442.39999999999998" y="288.30584707646182"/>
+        </scene>
+        <!--Verify Voice Key-->
+        <scene sceneID="IfQ-kq-5nz">
+            <objects>
+                <viewController id="8kK-v0-h8V" customClass="VerifyVoiceKeyViewController" customModule="SmartPass" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qos-1j-qKD"/>
+                        <viewControllerLayoutGuide type="bottom" id="0yC-CK-e3w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fEh-hf-aos">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpP-2d-dX9">
+                                <rect key="frame" x="56" y="94" width="263" height="28"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Please say your key word">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-dj-ci7">
+                                <rect key="frame" x="188" y="334" width="0.0" height="0.0"/>
+                                <attributedString key="attributedText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4l8-9Q-bJG" userLabel="Audio input plot" customClass="EZAudioPlot">
+                                <rect key="frame" x="66" y="147" width="243" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4l8-9Q-bJG" secondAttribute="height" multiplier="1.5:1" id="0Yl-n0-ZM3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gpP-2d-dX9" firstAttribute="leading" secondItem="fEh-hf-aos" secondAttribute="leadingMargin" constant="40" id="Ddn-Ip-d6F"/>
+                            <constraint firstItem="4l8-9Q-bJG" firstAttribute="leading" secondItem="fEh-hf-aos" secondAttribute="leadingMargin" constant="50" id="Fie-fB-0ea"/>
+                            <constraint firstItem="4l8-9Q-bJG" firstAttribute="centerX" secondItem="fEh-hf-aos" secondAttribute="centerX" id="IHy-SR-ijJ"/>
+                            <constraint firstItem="Byj-dj-ci7" firstAttribute="centerX" secondItem="fEh-hf-aos" secondAttribute="centerX" id="NjJ-Lk-uVd"/>
+                            <constraint firstItem="gpP-2d-dX9" firstAttribute="centerX" secondItem="fEh-hf-aos" secondAttribute="centerX" id="S3l-Xj-36W"/>
+                            <constraint firstItem="4l8-9Q-bJG" firstAttribute="top" secondItem="gpP-2d-dX9" secondAttribute="bottom" constant="25" id="cwi-ud-QZj"/>
+                            <constraint firstItem="Byj-dj-ci7" firstAttribute="top" secondItem="4l8-9Q-bJG" secondAttribute="bottom" constant="25" id="eC6-48-sSP"/>
+                            <constraint firstItem="gpP-2d-dX9" firstAttribute="top" secondItem="qos-1j-qKD" secondAttribute="bottom" constant="30" id="oT8-9s-5sY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Verify Voice Key" id="8TC-2Z-fZb"/>
+                    <connections>
+                        <outlet property="audioInputPlot" destination="4l8-9Q-bJG" id="3jX-32-aUl"/>
+                        <outlet property="keyLabel" destination="Byj-dj-ci7" id="Ku2-6T-6oY"/>
+                        <segue destination="m8L-6Q-L7C" kind="unwind" identifier="unwindToHostEvent" unwindAction="unwindToHostEventWithSender:" id="PHD-yL-8Xj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kiB-5k-xir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="m8L-6Q-L7C" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1223" y="288"/>
         </scene>
     </scenes>
     <resources>
