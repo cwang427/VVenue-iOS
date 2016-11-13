@@ -6,6 +6,7 @@
 //  Copyright © 2016 Cassidy Wang. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import AudioKit
 import Speech
@@ -118,7 +119,7 @@ class VerifyVoiceKeyViewController: UIViewController, SFSpeechRecognizerDelegate
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                if (self.keyLabel.text! == "\(currentKey)") {
+                if (self.keyLabel.text!.caseInsensitiveCompare(currentKey) == ComparisonResult.orderedSame) {
                     self.view.backgroundColor = UIColor.green
                     self.match = true
                 } else {
@@ -148,8 +149,8 @@ class VerifyVoiceKeyViewController: UIViewController, SFSpeechRecognizerDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! HostViewController
         if match {
-            segue.destination.view.backgroundColor = UIColor.green
             destinationVC.welcomeLabel.text = "Welcome, \(retrievedName)"
+            segue.destination.view.backgroundColor = UIColor.green
         } else {
             segue.destination.view.backgroundColor = UIColor.red
             destinationVC.welcomeLabel.text = ""
