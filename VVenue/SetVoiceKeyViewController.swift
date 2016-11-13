@@ -234,13 +234,12 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         
         let task = URLSession.shared.uploadTask(with: request as URLRequest, from: userImage) { (data, response, error) in
             
-            
             if let nsError = error {
                 print("failure")
             } else {
                 let httpResponse = response as! HTTPURLResponse
                 let statusCode = httpResponse.statusCode
-                
+
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
                     if statusCode == 200 {

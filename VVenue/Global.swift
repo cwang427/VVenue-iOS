@@ -18,4 +18,9 @@ var personGroupID: String = "id1"
 var currentKey: String = ""
 var userName: String = ""
 var userImage: Data? = nil
-var retrievedName: String = ""
+
+var retrievedName: String = "" {
+    didSet {
+        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "retrievedNameDidChange")))
+    }
+}

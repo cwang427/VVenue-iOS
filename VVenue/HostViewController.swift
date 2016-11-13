@@ -34,6 +34,7 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         queryImage.isUserInteractionEnabled = true
         NotificationCenter.default.addObserver(self, selector: #selector(HostViewController.checkImage), name: NSNotification.Name(rawValue: "imageViewDidChange"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HostViewController.updateWelcomeLabel), name: NSNotification.Name(rawValue: "retrievedNameDidChange"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -247,9 +248,9 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                             let pID: String = JSON(json)[0]["candidates"][0]["personId"].stringValue
                             self.retrievePersonData(personId: pID, personGroupId: personGroupId)
                             let confidenceLevel = JSON(json)[0]["candidates"][0]["confidence"].floatValue
-                            if confidenceLevel >= 0.80 {
+                            if confidenceLevel >= 1.00 {
                                 self.view.backgroundColor = UIColor.green
-                                self.welcomeLabel.text = "Welcome, \(JSON(json)[0]["candidates"][0]["name"])!"
+                                self.welcomeLabel.text = "Welcome, \(retrievedName)!"
                                 self.welcomeLabel.isHidden = false
                             } else if confidenceLevel >= 0.50 {
                                 self.view.backgroundColor = UIColor.orange
@@ -260,14 +261,12 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                 self.view.backgroundColor = UIColor.red
                                 print("no recognition")
                             }
-                            //                        completion(result: .Success(json))
                         }
                     }
                     else {
                         DispatchQueue.main.async {
                             self.view.backgroundColor = UIColor.red
                             print("JSON error")
-                            //                        completion(result: .Failure(Error.ServiceError(json: json as! JSONDictionary)))
                         }
                     }
                 }
@@ -342,6 +341,8 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     func retrievePersonData(personId: String, personGroupId: String) {
         
+        var complete: Bool = false
+        
         let headers: HTTPHeaders = ["Ocp-Apim-Subscription-Key": "26a1c49867934418bfcceac915443574"]
         
         Alamofire.request("https://api.projectoxford.ai/face/v1.0/persongroups/\(personGroupId)/persons/\(personId)", method: .get, headers: headers)
@@ -368,6 +369,10 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     retrievedName = name
                 }
         })
+    }
+    
+    func updateWelcomeLabel() {
+        welcomeLabel.text = "Welcome, \(retrievedName)!"
     }
     
     @IBAction func unwindToHostEvent(sender: UIStoryboardSegue) {
