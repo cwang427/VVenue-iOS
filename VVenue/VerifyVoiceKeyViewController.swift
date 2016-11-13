@@ -146,10 +146,14 @@ class VerifyVoiceKeyViewController: UIViewController, SFSpeechRecognizerDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! HostViewController
         if match {
             segue.destination.view.backgroundColor = UIColor.green
+            destinationVC.welcomeLabel.text = "Welcome, \(retrievedName)"
         } else {
             segue.destination.view.backgroundColor = UIColor.red
+            destinationVC.welcomeLabel.text = ""
+            print("no recognition")
         }
     }
     

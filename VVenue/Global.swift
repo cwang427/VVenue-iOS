@@ -18,3 +18,4 @@ var personGroupID: String = "id1"
 var currentKey: String = ""
 var userName: String = ""
 var userImage: Data? = nil
+var retrievedName: String = ""

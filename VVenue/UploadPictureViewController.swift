@@ -23,16 +23,16 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
         nameTextField.delegate = self
         nameTextField.addTarget(self, action: #selector(UploadPictureViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         imageToUse.isUserInteractionEnabled = true
+        hideKeyboardOnTap()
     }
     
     func textFieldDidChange(textField: UITextField) {
-        if (nameTextField.text != nil && !__CGSizeEqualToSize(imageToUse.image!.size, CGSize(width: 0, height: 0))) {
+        if (!nameTextField.text!.isEmpty && !__CGSizeEqualToSize(imageToUse.image!.size, CGSize(width: 0, height: 0))) {
             nextStageButton.isEnabled = true
         }
     }
     
     @IBAction func imageTapped() {
-        print("image tapped")
         let alert = UIAlertController(title: "Upload a photo", message: "Please upload a clear picture of your face", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Open camera", style: .default, handler: { (alert: UIAlertAction!) -> Void in
             self.takePicture()
@@ -59,7 +59,7 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
             UIGraphicsEndImageContext()
             
             imageToUse.image = newImage
-            if (nameTextField.text != nil) {
+            if (!nameTextField.text!.isEmpty) {
                 nextStageButton.isEnabled = true
             }
         }
@@ -96,10 +96,11 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
         activityIndicatorView.isHidden = false
         if !__CGSizeEqualToSize(imageToUse.image!.size, CGSize(width: 0, height: 0)) {
             
+            userName = self.nameTextField.text!
+            
             uploadImage(faceImage: imageToUse.image!, completion: { (result) in
                 switch result {
                 case .Success(_):
-                    userName = nameTextField.text!
                     print("face uploaded - ")
                     break
                 case .Failure(let error):
@@ -123,6 +124,7 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
         request.setValue("26a1c49867934418bfcceac915443574", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
         let pngRepresentation = UIImagePNGRepresentation(faceImage)
+        userImage = pngRepresentation
         
         let task = URLSession.shared.uploadTask(with: request as URLRequest, from: pngRepresentation) { (data, response, error) in
             
@@ -140,14 +142,11 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
                         DispatchQueue.main.async {
                             self.activityIndicatorView.isHidden = true
                         }
-                        print("success")
-                        print(json)
                         if (json as AnyObject).count == 0 {
                             DispatchQueue.main.async {
                                 self.presentAlert(title: "Uh oh", message: "No face found. Please try again.", type: .notification, sender: self)
                             }
                         } else {
-                            userImage = pngRepresentation
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "toVoiceKey", sender: self)
                             }
@@ -163,7 +162,7 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (nameTextField.text != nil) {
+        if (!nameTextField.text!.isEmpty) {
             attemptNextStep(nextStageButton)
             return true
         }

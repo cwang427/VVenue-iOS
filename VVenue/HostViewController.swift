@@ -122,8 +122,6 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let task = URLSession.shared.uploadTask(with: request as URLRequest, from: pngRepresentation) { (data, response, error) in
             
-            print("HTTP Request initiated")
-            
             if let nsError = error {
                 print("failure")
             }
@@ -137,8 +135,6 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         DispatchQueue.main.async {
                             self.activityIndicatorView.isHidden = true
                         }
-                        print("success")
-                        print(json)
                         if (json as AnyObject).count == 0 {
                             DispatchQueue.main.async {
                                 self.presentAlert(title: "No face found", message: "We couldn't identify a face. Please try again.", type: .notification, sender: self)
@@ -146,7 +142,6 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         } else {
                             let swiftyJSONED = JSON(json)
                             let faceID = swiftyJSONED[0]["faceId"].stringValue
-                            print(faceID)
                             self.identify(faces: [faceID], personGroupId: personGroupID, completion: { (result) in
                                 switch result {
                                 case .Success(let successJson):
@@ -230,11 +225,7 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("26a1c49867934418bfcceac915443574", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
-        let json: [String: Any] = ["personGroupId": personGroupId,
-                                   "maxNumOfCandidatesReturned": 1,
-                                   "confidenceThreshold": 0.5,
-                                   "faceIds": faceIDs
-        ]
+        let json: [String: Any] = ["personGroupId": personGroupId, "faceIds": faceIDs]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         request.httpBody = jsonData
@@ -242,8 +233,7 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
             if let nsError = error {
-                print("failure")
-                print(nsError)
+                print("identify error: \(nsError)")
                 //                completion(result: .Failure(Error.UnexpectedError(nsError: nsError)))
             }
             else {
@@ -252,17 +242,15 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
-                    print("identify json: \(json)")
                     if statusCode == 200 {
                         DispatchQueue.main.async {
-                            print("identification success")
-                            print("Confidence: \(JSON(json)[0]["candidates"][0]["confidence"].floatValue)")
                             let pID: String = JSON(json)[0]["candidates"][0]["personId"].stringValue
-                            print("personId: \(pID)")
                             self.retrievePersonData(personId: pID, personGroupId: personGroupId)
                             let confidenceLevel = JSON(json)[0]["candidates"][0]["confidence"].floatValue
                             if confidenceLevel >= 0.80 {
                                 self.view.backgroundColor = UIColor.green
+                                self.welcomeLabel.text = "Welcome, \(JSON(json)[0]["candidates"][0]["name"])!"
+                                self.welcomeLabel.isHidden = false
                             } else if confidenceLevel >= 0.50 {
                                 self.view.backgroundColor = UIColor.orange
                                 DispatchQueue.main.async {
@@ -270,6 +258,7 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                 }
                             } else {
                                 self.view.backgroundColor = UIColor.red
+                                print("no recognition")
                             }
                             //                        completion(result: .Success(json))
                         }
@@ -277,7 +266,6 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     else {
                         DispatchQueue.main.async {
                             self.view.backgroundColor = UIColor.red
-                            print(statusCode)
                             print("JSON error")
                             //                        completion(result: .Failure(Error.ServiceError(json: json as! JSONDictionary)))
                         }
@@ -360,7 +348,7 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             .validate(statusCode: 200..<300)
             .responseJSON(completionHandler: { response in
                 //Debugging
-                debugPrint(response)
+//                debugPrint(response)
                 
                 switch response.result{
                 case .success:
@@ -373,14 +361,11 @@ class HostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 //Response code
                 if let json = response.result.value {
-                    print("Get person successful")
-                    print("JSON: \(json)")
                     let getResponse = JSON(json)
                     
                     let name = getResponse["name"].stringValue
-                    self.welcomeLabel.text = "Welcome, \(name)!"
-                    self.welcomeLabel.isHidden = false
-                    currentKey = getResponse["voiceWord"].stringValue
+                    currentKey = getResponse["userData"].stringValue
+                    retrievedName = name
                 }
         })
     }

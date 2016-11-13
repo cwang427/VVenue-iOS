@@ -95,7 +95,6 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         } else {
             startRecording()
             plot.color = UIColor.blue
-            print("listening on")
             toggleListenButton.setTitle("Stop listening", for: .normal)
         }
     }
@@ -180,6 +179,8 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
     func createPerson() {
         let url = "https://api.projectoxford.ai/face/v1.0/persongroups/\(personGroupID)/persons"
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL)
+        var personID: String = ""
+        var complete: Bool = false
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -187,7 +188,7 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         
         let json: [String: Any] = [
             "name": userName,
-            "voiceWord": self.keyLabel.text!
+            "userData": self.keyLabel.text!
         ]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
@@ -195,22 +196,22 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            print("Create person initiated")
-            
             if let nsError = error {
                 print("failure")
             } else {
                 let httpResponse = response as! HTTPURLResponse
+
                 let statusCode = httpResponse.statusCode
-                
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
                     if statusCode == 200 {
-                        print("success")
-                        print(json)
                         let swiftyJSONED = JSON(json)
-                        let personID = swiftyJSONED["personId"].stringValue
-                        print("new person ID: \(personID)")
+                        personID = swiftyJSONED["personId"].stringValue
+                        complete = true
+                        
+                        while(!complete) {
+                        }
+
                         self.addFace(pID: personID)
                     }
                 }
@@ -222,17 +223,17 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         task.resume()
     }
     
-    func addFace(pID: String) {
+    func addFace(pID : String) {
         let url = "https://api.projectoxford.ai/face/v1.0/persongroups/\(personGroupID)/persons/\(pID)/persistedFaces"
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL)
+        var complete: Bool = false
         
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
         request.setValue("26a1c49867934418bfcceac915443574", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
         let task = URLSession.shared.uploadTask(with: request as URLRequest, from: userImage) { (data, response, error) in
             
-            print("Add face initiated")
             
             if let nsError = error {
                 print("failure")
@@ -243,11 +244,11 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
                     if statusCode == 200 {
-                        print("success")
-                        print(json)
-                        let swiftyJSONED = JSON(json)
-                        let faceID = swiftyJSONED["persistedFaceId"].stringValue
-                        print("faceID: \(faceID)")
+                        complete = true
+                        
+                        while (!complete) {
+                        }
+                        
                         self.trainSet()
                     }
                 }
@@ -268,8 +269,6 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            print("Train set initiated")
-            
             if let nsError = error {
                 print("failure")
             } else {
@@ -280,7 +279,6 @@ class SetVoiceKeyViewController: UIViewController, AlertPresenter, SFSpeechRecog
                     DispatchQueue.main.async {
                         self.activityIndicatorView.isHidden = true
                     }
-                    print("success")
                 }
             }
         }
