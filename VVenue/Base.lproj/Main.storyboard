@@ -108,7 +108,7 @@
                         <outlet property="beginHostingButton" destination="SJy-4J-g8G" id="862-fU-KnY"/>
                         <outlet property="queryImage" destination="MQI-eW-DZb" id="pQZ-4D-EBl"/>
                         <outlet property="welcomeLabel" destination="B09-Na-K4N" id="vms-4g-t1n"/>
-                        <segue destination="8kK-v0-h8V" kind="show" id="ZC8-ih-f7I"/>
+                        <segue destination="8kK-v0-h8V" kind="show" identifier="toVoiceVerification" id="ZC8-ih-f7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3g-w4-A73" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,25 +124,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="496.80000000000001" y="288.30584707646182"/>
-        </scene>
-        <!--Register-->
-        <scene sceneID="oee-tm-oID">
-            <objects>
-                <viewController title="Register" id="qIy-Nl-E8s" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rhu-ro-nir"/>
-                        <viewControllerLayoutGuide type="bottom" id="LG6-f0-eWp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qUc-6c-cFI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Register for an Event" id="3sh-h1-VNL"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="naZ-cT-rCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="496.80000000000001" y="-366.56671664167919"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lG5-Ss-aW4">
@@ -174,7 +155,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qIy-Nl-E8s" kind="relationship" relationship="rootViewController" id="xjP-tX-ye2"/>
+                        <segue destination="yge-Z6-FNw" kind="relationship" relationship="rootViewController" id="v7r-rW-Bxn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1U-eB-cpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +184,7 @@
         <!--Verify Voice Key-->
         <scene sceneID="IfQ-kq-5nz">
             <objects>
-                <viewController id="8kK-v0-h8V" customClass="VerifyVoiceKeyViewController" customModule="SmartPass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8kK-v0-h8V" customClass="VerifyVoiceKeyViewController" customModule="VVenue" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qos-1j-qKD"/>
                         <viewControllerLayoutGuide type="bottom" id="0yC-CK-e3w"/>
@@ -261,8 +242,327 @@
             </objects>
             <point key="canvasLocation" x="1223" y="288"/>
         </scene>
+        <!--Upload a Picture-->
+        <scene sceneID="hoQ-ya-LYs">
+            <objects>
+                <viewController id="yge-Z6-FNw" customClass="UploadPictureViewController" customModule="VVenue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tjJ-n1-alz"/>
+                        <viewControllerLayoutGuide type="bottom" id="dhM-cS-cVQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BGR-jp-DSu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera-76" highlightedImage="Camera-76" translatesAutoresizingMaskIntoConstraints="NO" id="MDR-qN-cbT">
+                                <rect key="frame" x="31" y="189" width="313" height="313"/>
+                                <color key="backgroundColor" red="0.75686274509999996" green="0.7843137255" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MDR-qN-cbT" secondAttribute="height" multiplier="1:1" id="OYK-Mh-c7v"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Yn8-ck-jRf" appends="YES" id="MlR-fx-GR1"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-uh-WHG">
+                                <rect key="frame" x="41" y="94" width="293" height="55"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+WW91chEREREgYmVhdXRpZnVsIGZhY2Ugd2lsbCBiZSB1c2VkIGFzIHlvdXIgdGlja2V0A
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhf-i4-ScF">
+                                <rect key="frame" x="163" y="309" width="50" height="50"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JY1-hT-nxu">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zxD-oX-kTN">
+                                            <rect key="frame" x="6" y="6" width="37" height="37"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zxD-oX-kTN" firstAttribute="centerY" secondItem="JY1-hT-nxu" secondAttribute="centerY" id="SB1-MZ-NVs"/>
+                                        <constraint firstItem="zxD-oX-kTN" firstAttribute="centerX" secondItem="JY1-hT-nxu" secondAttribute="centerX" id="dwh-0a-89O"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4b0-ik-5Fz"/>
+                                    <constraint firstAttribute="width" constant="50" id="anC-uc-FEm"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjs-ut-0kv">
+                                <rect key="frame" x="66" y="558" width="243" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="42e-0g-lG3"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dhM-cS-cVQ" firstAttribute="top" secondItem="cjs-ut-0kv" secondAttribute="bottom" constant="20" id="7Aw-tu-X25"/>
+                            <constraint firstItem="Mhf-i4-ScF" firstAttribute="centerY" secondItem="BGR-jp-DSu" secondAttribute="centerY" id="C5b-vg-X5P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cjs-ut-0kv" secondAttribute="trailing" constant="50" id="DpG-Rf-ILu"/>
+                            <constraint firstItem="MDR-qN-cbT" firstAttribute="centerX" secondItem="BGR-jp-DSu" secondAttribute="centerX" id="Grw-rv-XCv"/>
+                            <constraint firstItem="Mhf-i4-ScF" firstAttribute="centerX" secondItem="BGR-jp-DSu" secondAttribute="centerX" id="HVH-Fh-kfY"/>
+                            <constraint firstItem="Tm1-uh-WHG" firstAttribute="top" secondItem="tjJ-n1-alz" secondAttribute="bottom" constant="30" id="JSP-nh-Y9s"/>
+                            <constraint firstItem="MDR-qN-cbT" firstAttribute="top" secondItem="Tm1-uh-WHG" secondAttribute="bottom" constant="40" id="JiJ-L0-Deu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MDR-qN-cbT" secondAttribute="trailing" constant="15" id="KLV-dn-fti"/>
+                            <constraint firstItem="Tm1-uh-WHG" firstAttribute="centerX" secondItem="BGR-jp-DSu" secondAttribute="centerX" id="QJl-4f-QkH"/>
+                            <constraint firstItem="Tm1-uh-WHG" firstAttribute="leading" secondItem="BGR-jp-DSu" secondAttribute="leadingMargin" constant="25" id="oph-in-eIK"/>
+                            <constraint firstItem="cjs-ut-0kv" firstAttribute="leading" secondItem="BGR-jp-DSu" secondAttribute="leadingMargin" constant="50" id="uQM-sp-nax"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Upload a Picture" id="Sv4-3i-kfI">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dLa-bh-Lfa"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="eNv-56-Z7d">
+                            <connections>
+                                <action selector="attemptNextStep:" destination="yge-Z6-FNw" id="D7A-HD-LlZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="Mhf-i4-ScF" id="sDq-Ny-nsh"/>
+                        <outlet property="imageToUse" destination="MDR-qN-cbT" id="vaK-5B-nOs"/>
+                        <outlet property="nameTextField" destination="cjs-ut-0kv" id="YoP-33-2lX"/>
+                        <outlet property="nextStageButton" destination="eNv-56-Z7d" id="B5R-6D-cfg"/>
+                        <segue destination="GBp-OD-Td3" kind="show" identifier="toVoiceKey" id="uUP-q8-gG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q8U-YR-7Ct" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Yn8-ck-jRf">
+                    <connections>
+                        <action selector="imageTapped" destination="yge-Z6-FNw" id="nYJ-zb-XXh"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="496.80000000000001" y="-367.46626686656674"/>
+        </scene>
+        <!--Set Voice Key-->
+        <scene sceneID="MQy-t2-cKa">
+            <objects>
+                <viewController id="GBp-OD-Td3" customClass="SetVoiceKeyViewController" customModule="VVenue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EvB-zp-SOI"/>
+                        <viewControllerLayoutGuide type="bottom" id="cw1-2i-Wce"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MDG-ur-t4Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbn-t5-MRu">
+                                <rect key="frame" x="56" y="74" width="263" height="55"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Use a single word as your voice key">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="acA-Rf-kqe">
+                                <rect key="frame" x="126" y="144" width="123" height="39"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Start listening">
+                                            <attributes>
+                                                <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="toggleMic" destination="GBp-OD-Td3" eventType="touchUpInside" id="xaI-HB-TOQ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf7-gt-ePh" customClass="EZAudioPlot">
+                                <rect key="frame" x="66" y="208" width="243" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tf7-gt-ePh" secondAttribute="height" multiplier="1.5:1" id="XTo-MR-Ndo"/>
+                                </constraints>
+                            </view>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LoF-Qy-akp">
+                                <rect key="frame" x="162.5" y="308.5" width="50" height="50"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MTR-sX-lIv">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bK0-ao-6A3">
+                                            <rect key="frame" x="6" y="6" width="37" height="37"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bK0-ao-6A3" firstAttribute="centerX" secondItem="MTR-sX-lIv" secondAttribute="centerX" id="Hco-eT-MuK"/>
+                                        <constraint firstItem="bK0-ao-6A3" firstAttribute="centerY" secondItem="MTR-sX-lIv" secondAttribute="centerY" id="a3W-5e-bcN"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="b00-V3-OvM"/>
+                                    <constraint firstAttribute="width" constant="50" id="tRu-Dh-2CP"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-NH-pXY">
+                                <rect key="frame" x="185" y="433" width="6" height="28"/>
+                                <color key="tintColor" red="1" green="0.13854819500000001" blue="0.18309916030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.019762326469190294" green="0.81572162289726957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="20" name="Avenir-Black"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="1" green="0.089263750710000006" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bd-tb-ddK">
+                                <rect key="frame" x="111" y="395" width="153" height="28"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Your voice key is:">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yju-5r-oCl">
+                                <rect key="frame" x="31" y="471" width="313" height="49.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Tap &quot;Start listening&quot; and speak to enter new key">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ThA-NH-pXY" firstAttribute="top" secondItem="9bd-tb-ddK" secondAttribute="bottom" constant="10" id="1JD-nV-bd0"/>
+                            <constraint firstItem="9bd-tb-ddK" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="1Wj-a9-dtZ"/>
+                            <constraint firstItem="acA-Rf-kqe" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="48E-Dp-XGJ"/>
+                            <constraint firstItem="acA-Rf-kqe" firstAttribute="top" secondItem="kbn-t5-MRu" secondAttribute="bottom" constant="15" id="5LE-hu-hPG"/>
+                            <constraint firstItem="tf7-gt-ePh" firstAttribute="leading" secondItem="MDG-ur-t4Q" secondAttribute="leadingMargin" constant="50" id="7CU-QU-ziF"/>
+                            <constraint firstItem="tf7-gt-ePh" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="92a-QP-sGq"/>
+                            <constraint firstItem="kbn-t5-MRu" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="9Fy-7k-SiV"/>
+                            <constraint firstItem="ThA-NH-pXY" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="LVs-Oc-Ly7"/>
+                            <constraint firstItem="tf7-gt-ePh" firstAttribute="top" secondItem="acA-Rf-kqe" secondAttribute="bottom" constant="25" id="arO-Ip-pk8"/>
+                            <constraint firstItem="LoF-Qy-akp" firstAttribute="centerY" secondItem="MDG-ur-t4Q" secondAttribute="centerY" id="f4J-h2-4ZA"/>
+                            <constraint firstItem="kbn-t5-MRu" firstAttribute="leading" secondItem="MDG-ur-t4Q" secondAttribute="leadingMargin" constant="40" id="iST-g5-agf"/>
+                            <constraint firstItem="Yju-5r-oCl" firstAttribute="top" secondItem="ThA-NH-pXY" secondAttribute="bottom" constant="10" id="juw-wh-1Ga"/>
+                            <constraint firstItem="9bd-tb-ddK" firstAttribute="top" secondItem="tf7-gt-ePh" secondAttribute="bottom" constant="25" id="kAL-dz-xbH"/>
+                            <constraint firstItem="Yju-5r-oCl" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="kmh-jj-Yc2"/>
+                            <constraint firstItem="LoF-Qy-akp" firstAttribute="centerX" secondItem="MDG-ur-t4Q" secondAttribute="centerX" id="mge-fY-Y7T"/>
+                            <constraint firstItem="Yju-5r-oCl" firstAttribute="leading" secondItem="MDG-ur-t4Q" secondAttribute="leadingMargin" constant="15" id="vin-vN-ReI"/>
+                            <constraint firstItem="kbn-t5-MRu" firstAttribute="top" secondItem="EvB-zp-SOI" secondAttribute="bottom" constant="10" id="vrx-LR-meS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Voice Key" id="sAM-41-ept">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Qw4-dH-oI1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" style="done" id="5NN-4r-LTy">
+                            <connections>
+                                <action selector="submitRegistration:" destination="GBp-OD-Td3" id="TIn-Wa-uVU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="LoF-Qy-akp" id="bA1-E9-xwW"/>
+                        <outlet property="audioInputPlot" destination="tf7-gt-ePh" id="g4r-Ok-LdN"/>
+                        <outlet property="keyLabel" destination="ThA-NH-pXY" id="CO8-1J-fe1"/>
+                        <outlet property="toggleListenButton" destination="acA-Rf-kqe" id="I6k-nV-ie0"/>
+                        <segue destination="g33-Xl-7la" kind="show" identifier="completedRegistration" id="Bbl-KQ-Frg"/>
+                        <segue destination="o3w-Bb-9QS" kind="unwind" unwindAction="unwindToRegistrationWithSender:" id="cQk-hH-bYo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zqc-2s-XWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="o3w-Bb-9QS" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1222" y="-367"/>
+        </scene>
+        <!--Completed Registration-->
+        <scene sceneID="peX-hH-VGq">
+            <objects>
+                <viewController id="g33-Xl-7la" customClass="RegistrationSuccessViewController" customModule="VVenue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mmy-cw-8HS"/>
+                        <viewControllerLayoutGuide type="bottom" id="yRP-uf-II0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tcg-Zm-MDd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-3K-pJJ">
+                                <rect key="frame" x="36" y="114" width="303" height="28"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Success! You're registered!">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Avenir-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t1w-AA-jdo">
+                                <rect key="frame" x="45" y="314" width="285" height="39"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Tap to head back to registration">
+                                            <attributes>
+                                                <font key="NSFont" size="20" name="Avenir-Book"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="returnToRegistration" destination="g33-Xl-7la" eventType="touchUpInside" id="drG-Lx-prk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lcs-3K-pJJ" firstAttribute="top" secondItem="Mmy-cw-8HS" secondAttribute="bottom" constant="50" id="3BB-6a-aGo"/>
+                            <constraint firstItem="Lcs-3K-pJJ" firstAttribute="leading" secondItem="tcg-Zm-MDd" secondAttribute="leadingMargin" constant="20" id="Suw-ac-NzU"/>
+                            <constraint firstItem="t1w-AA-jdo" firstAttribute="centerY" secondItem="tcg-Zm-MDd" secondAttribute="centerY" id="UQ5-g6-unl"/>
+                            <constraint firstItem="t1w-AA-jdo" firstAttribute="centerX" secondItem="tcg-Zm-MDd" secondAttribute="centerX" id="i4e-1n-2Sr"/>
+                            <constraint firstItem="Lcs-3K-pJJ" firstAttribute="centerX" secondItem="tcg-Zm-MDd" secondAttribute="centerX" id="ylf-W0-bnq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Completed Registration" id="6mF-v5-zpU"/>
+                    <connections>
+                        <segue destination="P5v-Rr-peZ" kind="unwind" identifier="unwindToRegistration" unwindAction="unwindToRegistrationWithSender:" id="1TS-NM-eCa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sAD-jf-T9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="P5v-Rr-peZ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="-367"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Camera-76" width="76" height="76"/>
         <image name="Icon-Small" width="29" height="29"/>
         <image name="ticketIcon-Small" width="29" height="29"/>
     </resources>

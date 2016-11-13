@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C32EB4181DD8191C006A0504 /* PhotoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32EB4171DD8191C006A0504 /* PhotoColor.swift */; };
 		C332B2541DD85E890037A782 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C332B2531DD85E890037A782 /* AudioKit.framework */; };
+		C332B2561DD864860037A782 /* UploadPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332B2551DD864860037A782 /* UploadPictureViewController.swift */; };
+		C332B2581DD8669E0037A782 /* SetVoiceKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332B2571DD8669E0037A782 /* SetVoiceKeyViewController.swift */; };
+		C332B25A1DD868D30037A782 /* RegistrationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332B2591DD868D30037A782 /* RegistrationSuccessViewController.swift */; };
 		C3995D531DD80F500017E5CB /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3995D521DD80F500017E5CB /* HostViewController.swift */; };
 		C3995D561DD80FB20017E5CB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3995D541DD80FB20017E5CB /* Alamofire.framework */; };
 		C3995D571DD80FB20017E5CB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3995D551DD80FB20017E5CB /* SwiftyJSON.framework */; };
@@ -33,6 +36,9 @@
 		96E7881F87877C211E6CE55A /* Pods-VVenue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VVenue.release.xcconfig"; path = "Pods/Target Support Files/Pods-VVenue/Pods-VVenue.release.xcconfig"; sourceTree = "<group>"; };
 		C32EB4171DD8191C006A0504 /* PhotoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoColor.swift; sourceTree = "<group>"; };
 		C332B2531DD85E890037A782 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Pods/AudioKit/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		C332B2551DD864860037A782 /* UploadPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPictureViewController.swift; sourceTree = "<group>"; };
+		C332B2571DD8669E0037A782 /* SetVoiceKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVoiceKeyViewController.swift; sourceTree = "<group>"; };
+		C332B2591DD868D30037A782 /* RegistrationSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessViewController.swift; sourceTree = "<group>"; };
 		C3995D521DD80F500017E5CB /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		C3995D541DD80FB20017E5CB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/VVenue-ebodjcwtopbasubdpkldaahsqmnn/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		C3995D551DD80FB20017E5CB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/VVenue-ebodjcwtopbasubdpkldaahsqmnn/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -102,7 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				C3995D521DD80F500017E5CB /* HostViewController.swift */,
+				C332B2551DD864860037A782 /* UploadPictureViewController.swift */,
 				C3A534A31DD85B7700FC3B41 /* VerifyVoiceKeyViewController.swift */,
+				C332B2571DD8669E0037A782 /* SetVoiceKeyViewController.swift */,
+				C332B2591DD868D30037A782 /* RegistrationSuccessViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -280,12 +289,15 @@
 				C3995D5C1DD810C60017E5CB /* ImageUploader.swift in Sources */,
 				C3995D611DD8115E0017E5CB /* UIViewController.swift in Sources */,
 				C3995D5E1DD810FF0017E5CB /* CustomAlertPresentationType.swift in Sources */,
+				C332B2581DD8669E0037A782 /* SetVoiceKeyViewController.swift in Sources */,
 				C32EB4181DD8191C006A0504 /* PhotoColor.swift in Sources */,
 				C3E140AF1DD7F46A00C392D5 /* AppDelegate.swift in Sources */,
+				C332B25A1DD868D30037A782 /* RegistrationSuccessViewController.swift in Sources */,
 				C3A534A41DD85B7700FC3B41 /* VerifyVoiceKeyViewController.swift in Sources */,
 				C3995D591DD810830017E5CB /* AlertPresenter.swift in Sources */,
 				C3995D641DD811BF0017E5CB /* DynamicImageView.swift in Sources */,
 				C3A534A21DD8317E00FC3B41 /* Global.swift in Sources */,
+				C332B2561DD864860037A782 /* UploadPictureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
