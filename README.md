@@ -8,7 +8,7 @@ VVenue uses Microsoft's Cognitive Services FaceAPI to detect and identify people
 ## How to Use VVenue
 
 ### Before Heading Out
-For users, register for an event online (in theory, that is – we didn't make one for the hackathon), upload a picture of your face, and tell us your favorite word. Congrats, you're all set!
+For users, register for an event online (in theory, that is – we didn't make a website for the hackathon), upload a picture of your face, and tell us your favorite word. Congrats, you're all set!
 
 For hosts, create an event and distribute event IDs to those interested in attending. The app will take care of checking in on site.
 
